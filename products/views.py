@@ -5,11 +5,14 @@ from rest_framework.response import Response
 
 from products.models import Product, Review, Category
 from products.serializers import ProductSerializer, ReviewSerializer, CategorySerializer
-
+from rest_framework.pagination import PageNumberPagination
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+class CutomPagination(PageNumberPagination):
+    page_size = 3
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -20,6 +23,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    pagination_class = CutomPagination
 
     def list(self, request, *args, **kwargs):
         category = request.query_params.get('category', None)
