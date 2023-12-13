@@ -34,11 +34,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_class=ProductFilter
     search_fields=['name','description']
 
-    def list(self, request, *args, **kwargs):
-        category = request.query_params.get('category', None)
-        if category:
-            self.queryset = self.queryset.filter(category=category)
-        return super().list(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
