@@ -8,7 +8,8 @@ from rest_framework import generics, serializers
 from products.models import FlashSale
 
 
-
+class FlashSaleListCreateView(generics.ListCreateAPIView):
+    queryset = FlashSale.objects.all()
 
     class FlashSaleSerializer(serializers.ModelSerializer):
         class Meta:
