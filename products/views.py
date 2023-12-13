@@ -1,11 +1,15 @@
+import django_filters.rest_framework
 from django.db import models
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from products.filters import ProductFilter
 from products.models import Product, Review, Category
 from products.serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from rest_framework.pagination import PageNumberPagination
+
+from rest_framework import filters
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
@@ -25,6 +29,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
     pagination_class = CutomPagination
+
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,filters.SearchFilter)
+    filterset_class=ProductFilter
+    search_fields=['name','description']
 
     def list(self, request, *args, **kwargs):
         category = request.query_params.get('category', None)
