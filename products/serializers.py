@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework import serializers
-from .models import Product, Review, Category
+from .models import Product, Review, Category,ProductViewHistory
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -8,6 +8,11 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+
+class ProductViewHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductViewHistory
+        fields = '__all__'
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
