@@ -5,7 +5,6 @@ from products.models import ProductViewHistory
 from products.serializers import ProductViewHistorySerializer
 from drf_yasg.utils import swagger_auto_schema
 
-
 class ProductViewHistoryCreate(APIView):
     serializer_class = ProductViewHistorySerializer
 
