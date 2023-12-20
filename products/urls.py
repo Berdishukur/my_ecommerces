@@ -11,9 +11,6 @@ router.register(r'reviews',ReviewViewSet)
 router.register(r'categories',CategoryViewSet)
 
 
-
-
-
 urlpatterns=[
     path('',include(router.urls)),
     path('sale/',FlashSaleListCreateView.as_view(),name='sale'),
