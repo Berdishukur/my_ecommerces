@@ -6,10 +6,10 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from .filters import ProductFilter,ReviewFilter
+from products.filters import ProductFilter,ReviewFilter
 from django_filters import rest_framework as django_filters
 
-from products.models import Product, Review, Category
+from products.models.product     import Product, Review, Category
 from products.serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from rest_framework import generics,filters
 from rest_framework.permissions import IsAuthenticated
