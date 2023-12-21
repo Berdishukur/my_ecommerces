@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'products',
     'django_filters',
     'rest_framework_simplejwt',
-    # 'djoser',
+    'djoser',
 
 ]
 
