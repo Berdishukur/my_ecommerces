@@ -13,6 +13,7 @@ from products.models.product import Product, Review, Category
 from products.serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from rest_framework import generics,filters
 from rest_framework.permissions import IsAuthenticated
+from products.permissions import IsStaffOrReadOnly
 
 class CustomPagination(PageNumberPagination):
     page_size = 3
@@ -36,7 +37,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsStaffOrReadOnly]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
