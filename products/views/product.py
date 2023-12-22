@@ -17,15 +17,7 @@ from products.permissions import IsStaffOrReadOnly
 
 class CustomPagination(PageNumberPagination):
     page_size = 3
-class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
 
-    pagination_class = CustomPagination
-
-    filter_backends = (django_filters.DjangoFilterBackend, filters.SearchFilter)
-    search_fields = ['rating']
-    filterset_class=ReviewFilter
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
