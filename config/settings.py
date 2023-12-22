@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+from dotenv import load_dotenv
 from datetime import timedelta
 from pathlib import Path
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8spg!*&f3)yii%g4ei8n-#1tr8%yuo!)t9yz=chwuo)z(a=8p@'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -157,9 +159,13 @@ EMAIL_HOST_PASSWORD='berdi1234'
 
 DJOSER= {
     'PASSWORD_REST_CONFIRM_URL':'password/reset/confirm/{uid}/{token}/',
+    'USERNAME_REST_CONFIRM_URL':'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL':'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL':True,
+    'SERIALIZERS':{},
 }
 
-
+TELEGRAM_BOT_TOKEN=os.environ.get('TELEGRAM_BOT_TOKEN')
 
 
 
