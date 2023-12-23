@@ -4,13 +4,13 @@ from rest_framework.permissions import IsAuthenticated
 from products.models import Order
 from products.models import Review,Category
 from products.permissions import IsOwnerOrReadOnly
-from products.serializers import OrderSerializer
+from products.serializers import OrderSerializers
 from products.serializers import ReviewSerializer,CategorySerializer
 
 class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Order.object.all()
-    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializers
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
