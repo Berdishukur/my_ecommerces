@@ -9,37 +9,37 @@ class OrderSerializers(serializers.ModelSerializer):
         model = Order
         fields = ['id','product','customer','quantity','created_at','total_price','phone_number']
 
-        def get_total_price(self,obj):
-            return obj.product.price *obj.quantity
+    def get_total_price(self, obj):
+        return obj.product.price * obj.quantity
 
-        def validate_quantity(self,value):
-            try:
-                # Fetch the product instance from the database
-                product_id=self.initial_data['product']
-                product=Product.objects.get(id=product_id)
+    def validate_quantity(self, value):
+        try:
+            # Fetch the product instance from the database
+            product_id = self.initial_data['product']
+            product = Product.objects.get(id=product_id)
 
-                # Check the stock
-                if value>product.stock:
-                    raise serializers.ModelSerializer("Not enough items in stock.")
+            # Check the stock
+            if value > product.stock:
+                raise serializers.ModelSerializer("Not enough items in stock.")
 
-                if value <1:
-                    raise serializers.ValidationError("Quantity must be at least 1.")
-                return value
-            except ObjectDoesNotExist:
+            if value < 1:
+                raise serializers.ValidationError("Quantity must be at least 1.")
+            return value
+        except ObjectDoesNotExist:
 
-                raise serializers.ValidationError("Product does not exist")
+            raise serializers.ValidationError("Product does not exist")
 
-        def create(self,validated_data):
-            order=Order.objects.create(**validated_data)
-            product=order.product
-            product.stock-=order.quantity
-            product.save()
-            self.send_confirmation_email(order)
-            return order
+    def create(self, validated_data):
+        order = Order.objects.create(**validated_data)
+        product = order.product
+        product.stock -= order.quantity
+        product.save()
+        self.send_confirmation_email(order)
+        return order
 
-        def send_confirmation_email(self,order):
-            # Here you would send an email. For this example , we'll just print
-            print(f"Sent confirmation email for Order {order.id}")
+    def send_confirmation_email(self, order):
+        # Here you would send an email. For this example , we'll just print
+        print(f"Sent confirmation email for Order {order.id}")
 
 
 
