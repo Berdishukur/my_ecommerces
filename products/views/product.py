@@ -9,7 +9,7 @@ from rest_framework.pagination import PageNumberPagination
 from products.filters import ProductFilter,ReviewFilter
 from django_filters import rest_framework as django_filters
 
-from products.models.product import Product, Review, Category
+from products.models import Product, Review, Category
 from products.serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from rest_framework import generics,filters
 from rest_framework.permissions import IsAuthenticated
