@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'products',
+    'billing',
     'django_filters',
     'rest_framework_simplejwt',
     'djoser',
