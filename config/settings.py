@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'products',
     'billing',
+    'custom_auth',
     'django_filters',
     'rest_framework_simplejwt',
     'djoser',
@@ -94,6 +95,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'custom_auth.CustomUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -173,6 +175,7 @@ CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL') # RabbitMQ as a broker
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND') # Redis as a result backend
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+SMS_KEY = os.environ.get('SMS_KEY')
 
 
 
