@@ -29,9 +29,6 @@ class Product(models.Model):
         self.save()
         return True
 
-    def increase_stock(self, amount):
-        self.stock += amount
-        self.save()
 
     class Meta:
         ordering = ['name']
