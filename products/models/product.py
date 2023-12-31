@@ -33,3 +33,5 @@ class Product(models.Model):
         self.stock += amount
         self.save()
 
+    class Meta:
+        ordering = ['name']
