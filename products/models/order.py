@@ -2,6 +2,13 @@ from django.db import models
 from .product import Product
 from django.core.validators import RegexValidator
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+phone_regex = RegexValidator(
+    regex=r'^\+998\d{9}$',
+    message="Phone number must be in the format: '+998xxxxxxxxx'."
+)
 
 class Order(models.Model):
     PENDING = 'Pending'
