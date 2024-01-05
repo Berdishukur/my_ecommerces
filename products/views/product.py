@@ -28,7 +28,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
     filterset_class=ReviewFilter
 
 
-
+class CategoryViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 
