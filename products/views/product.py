@@ -15,8 +15,7 @@ from rest_framework import generics,filters
 from rest_framework.permissions import IsAuthenticated
 from products.permissions import IsStaffOrReadOnly
 
-class CustomPagination(PageNumberPagination):
-    page_size = 3
+
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
